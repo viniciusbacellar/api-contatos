@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -30,21 +31,26 @@ public class Contato implements Serializable{
 	private String celular;
 	private String email;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Empresa empresa;
 	
 	public Contato() {
 	}
 
-	public Contato(String nome, String sobrenome, Date dataNascimento, String telefone, String celular,
-			String email) {
+	public Contato(Long id, String nome, String sobrenome, Date dataNascimento, String telefone, String celular,
+			String email, Empresa empresa) {
+		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
+		this.empresa = empresa;
 	}
+
+
 
 	public Long getId() {
 		return id;
